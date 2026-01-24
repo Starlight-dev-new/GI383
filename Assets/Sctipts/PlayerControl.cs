@@ -2,15 +2,44 @@ using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float autoUpSpeed = 2.5f; 
+    public float jumpForce = 8f;
+    public float sideForce = 4f;
+
+    Rigidbody rb;
+    bool jumpToRight = true;
+    bool canJump = true;
+
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
+        rb.velocity = new Vector2(rb.velocity.x, autoUpSpeed);
+        if (Input.GetMouseButtonDown(0)&& canJump)
+        {
+            canJump = false;
+            Jump();
+        }
+    }
+
+    void Jump()
+    {
+        rb.velocity = Vector2.zero;
+
+        float dir = jumpToRight ? 1f : -1f;
+        rb.AddForce(new Vector2(dir * sideForce, jumpForce), ForceMode.Impulse);
+
+        jumpToRight = !jumpToRight;
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            canJump = true;
+        }
         
     }
 }
