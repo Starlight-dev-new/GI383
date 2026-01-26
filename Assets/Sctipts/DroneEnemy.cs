@@ -205,7 +205,7 @@ public class DroneEnemy : MonoBehaviour
         retreatDirection = (transform.position - (player != null ? player.position : Vector3.zero)).normalized;
         if (retreatDirection == Vector3.zero)
         {
-            retreatDirection = Vector3.up;
+            retreatDirection = Random.Range(0, 2) == 0 ? Vector3.left : Vector3.right;
         }
     }
 }

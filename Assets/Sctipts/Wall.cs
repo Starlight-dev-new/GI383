@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    [SerializeField] float chunkHeight = 10f;
+    [SerializeField] float chunkHeight = 12f;
     [SerializeField] float totalChunks = 0f;
-    [SerializeField] Transform cameraTransform;
+    [SerializeField] Transform player;
+    
     private float heightY = 0f;
     void Start()
     {
@@ -15,19 +16,17 @@ public class Wall : MonoBehaviour
         }
 
     }
-
-    // Update is called once per frame
     void Update()
     {
-        if (transform.position.y + chunkHeight < cameraTransform.position.y)
+        if (transform.position.y + chunkHeight < player.position.y)
         {
-            Debug.Log("Move Wall Up");
             MoveOnTop();
         }
     }
+
     void MoveOnTop()
     {
-        heightY = heightY + chunkHeight * totalChunks;
+        heightY = heightY + (chunkHeight * totalChunks);
         transform.position = new Vector3(transform.position.x, heightY,transform.position.z);
     }
 

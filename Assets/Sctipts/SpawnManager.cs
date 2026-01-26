@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 public class SpawnManager : MonoBehaviour
 {
+    [SerializeField] Transform cameraTransform; 
     [Header("Spawn Settings")]
-    public GameObject enemyPrefab;      
-    public Transform player;            
-    public float distanceAbovePlayer = 8f; 
+    public GameObject enemyPrefab;             
     public float spawnInterval = 2f;    
-    public int maxEnemies = 5;           
+    public int maxEnemies = 5; 
+    [SerializeField] Transform[] spawnPos;
 
     private float timer;
     private List<GameObject> activeEnemies = new List<GameObject>();
@@ -31,18 +31,16 @@ public class SpawnManager : MonoBehaviour
             }
         }
     }
+    void LateUpdate()
+    {
+        transform.position = new Vector3(0, cameraTransform.position.y + 10f, 0);
+    }
 
     void TrySpawnEnemy()
     {
         if (activeEnemies.Count >= maxEnemies) return;
-
-        Vector3 spawnPos = new Vector3(
-            player.position.x,
-            player.position.y + distanceAbovePlayer,
-            0f
-        );
-
-        GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
+        
+        GameObject enemy = Instantiate(enemyPrefab, spawnPos[Random.Range(0, spawnPos.Length)].transform.position, Quaternion.identity);
         activeEnemies.Add(enemy);
     }
 }
