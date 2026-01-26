@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float autoUpSpeed = 2.5f; 
-    public float jumpForce = 8f;
     public float sideForce = 4f;
 
     Rigidbody rb;
@@ -18,7 +17,7 @@ public class PlayerControl : MonoBehaviour
     void Update()
     {
         rb.velocity = new Vector2(rb.velocity.x, autoUpSpeed);
-        if (Input.GetMouseButtonDown(0)&& canJump)
+        if (Input.GetMouseButtonDown(0)&& canJump|| Input.GetKeyDown(KeyCode.Space) && canJump)
         {
             canJump = false;
             Jump();
@@ -30,7 +29,7 @@ public class PlayerControl : MonoBehaviour
         rb.velocity = Vector2.zero;
 
         float dir = jumpToRight ? 1f : -1f;
-        rb.AddForce(new Vector2(dir * sideForce, jumpForce), ForceMode.Impulse);
+        rb.AddForce(new Vector2(dir * sideForce,0), ForceMode.Impulse);
 
         jumpToRight = !jumpToRight;
     }
