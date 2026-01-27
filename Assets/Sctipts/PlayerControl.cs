@@ -5,6 +5,8 @@ public class PlayerControl : MonoBehaviour
 {
     [SerializeField] float autoUpSpeed = 2.5f; 
     [SerializeField] float sideForce = 4f;
+    [SerializeField] float speedUp;
+    private float timer;
 
 
     Rigidbody rb;
@@ -31,6 +33,12 @@ public class PlayerControl : MonoBehaviour
 
     void Update()
     {
+        timer +=Time.deltaTime;
+        if(timer>10)
+        {
+            autoUpSpeed += speedUp;
+            timer = 0;
+        }
         if (!GameManager.instance.isdead) rb.linearVelocity = new Vector2(rb.linearVelocity.x, autoUpSpeed);
         if (Input.GetMouseButtonDown(0)&& canJump && !GameManager.instance.isdead || Input.GetKeyDown(KeyCode.Space) && canJump && !GameManager.instance.isdead)
         {

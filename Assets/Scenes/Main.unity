@@ -2111,8 +2111,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1558922783}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!136 &1571378851
-CapsuleCollider:
+--- !u!65 &1571378851
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -2129,11 +2129,9 @@ CapsuleCollider:
   m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3.8869555
-  m_Height: 8.665698
-  m_Direction: 1
-  m_Center: {x: 2.60677, y: -6.688415, z: 0}
+  serializedVersion: 3
+  m_Size: {x: 7.9398346, y: 5.488701, z: 0.19999999}
+  m_Center: {x: 2.9339297, y: -8.021882, z: 0}
 --- !u!1 &1589141366
 GameObject:
   m_ObjectHideFlags: 0
@@ -2286,6 +2284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
   autoUpSpeed: 5
   sideForce: 20
+  speedUp: 0.5
 --- !u!212 &1623402253
 SpriteRenderer:
   serializedVersion: 2
