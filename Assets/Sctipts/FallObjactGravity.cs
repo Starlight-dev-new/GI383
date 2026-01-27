@@ -22,7 +22,6 @@ public class FallObjactGravity : MonoBehaviour
         
         if(other.CompareTag("UpperCamera")&& GameManager.instance.gravity)
         {
-            Debug.Log("gravity");
             int rng = Random.Range(0,2);
             if(rng == 0 )
             {

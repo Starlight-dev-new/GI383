@@ -85,7 +85,7 @@ public class PlayerControl : MonoBehaviour
         }
         if (other.gameObject.CompareTag("TapGravity"))
         {
-            GameManager.instance.GravityObject();
+            StartCoroutine(GameManager.instance.GravityObject(10f));
         }
     }
 }
