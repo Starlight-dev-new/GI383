@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - player
   - Enemy
+  - DeadZone
   layers:
   - Default
   - TransparentFX
