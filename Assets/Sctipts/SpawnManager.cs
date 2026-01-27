@@ -17,7 +17,7 @@ public class SpawnManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer >= spawnInterval)
+        if (timer >= spawnInterval && !GameManager.instance.isdead )
         {
             TrySpawnEnemy();
             timer = 0f;

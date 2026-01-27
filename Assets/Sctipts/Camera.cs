@@ -7,6 +7,7 @@ public class Camera : MonoBehaviour
 
     void LateUpdate()
     {
+        if (GameManager.instance.isdead) return;
         transform.position = new Vector3(0, player.position.y , transform.position.z);
     }
 }

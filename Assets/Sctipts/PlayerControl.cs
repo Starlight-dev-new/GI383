@@ -1,9 +1,11 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerControl : MonoBehaviour
 {
-    public float autoUpSpeed = 2.5f; 
-    public float sideForce = 4f;
+    [SerializeField] float autoUpSpeed = 2.5f; 
+    [SerializeField] float sideForce = 4f;
+
 
     Rigidbody rb;
     SpriteRenderer srPlayer;
@@ -24,12 +26,13 @@ public class PlayerControl : MonoBehaviour
         {
             jumpToRight = true;
         }
+        Jump();
     }
 
     void Update()
     {
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, autoUpSpeed);
-        if (Input.GetMouseButtonDown(0)&& canJump|| Input.GetKeyDown(KeyCode.Space) && canJump)
+        if (!GameManager.instance.isdead) rb.linearVelocity = new Vector2(rb.linearVelocity.x, autoUpSpeed);
+        if (Input.GetMouseButtonDown(0)&& canJump && !GameManager.instance.isdead || Input.GetKeyDown(KeyCode.Space) && canJump && !GameManager.instance.isdead)
         {
             canJump = false;
             Jump();
@@ -65,5 +68,12 @@ public class PlayerControl : MonoBehaviour
             canJump = true;
         }
         
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("DeadZone"))
+        {
+            GameManager.instance.isdead = true;
+        }
     }
 }
