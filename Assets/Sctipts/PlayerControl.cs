@@ -83,5 +83,9 @@ public class PlayerControl : MonoBehaviour
         {
             GameManager.instance.isdead = true;
         }
+        if (other.gameObject.CompareTag("TapGravity"))
+        {
+            GameManager.instance.GravityObject();
+        }
     }
 }
