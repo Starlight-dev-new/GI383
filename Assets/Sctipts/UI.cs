@@ -11,4 +11,5 @@ public class UI : MonoBehaviour
         if (GameManager.instance.isdead)return;
         scoreText.text = "Score: " + playerTransform.position.y.ToString("0");
     }
+
 }
